@@ -16,7 +16,7 @@ class TopicsController < ApplicationController
 
 	def create
 		user = User.find_or_create_by(email: params[:user][:email])
-
+		
 		if user.save
 			Survey.submit(user, params)
 			render :json => { success: 'Thank you for participating in our survey!' }
