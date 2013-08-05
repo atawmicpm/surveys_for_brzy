@@ -1,0 +1,32 @@
+<h3>
+	<%= @topic.subject %>
+</h3>
+
+
+<% @topic.users.each do |user| %>
+
+	<h6 class="email_header"><%= user.email %></h6>
+	<table class="table table-striped">
+
+	<tbody>
+		<tr>
+			<th>Question</th>
+			<th style="width: 50%;">Answer</th>
+		</tr>
+
+	<% user.answers.each do |answer| %>
+
+		<% if answer.survey.topic_id == @topic.id %>
+			<tr>
+				<td><%= answer.question.question %></td>
+				<td><%= answer.answer %></td>
+			</tr>
+
+		<% end %>
+
+	<% end %>
+	
+		</tbody>
+	</table>
+
+<% end %>

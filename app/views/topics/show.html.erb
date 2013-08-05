@@ -1,0 +1,49 @@
+<h3>
+	<%= @topic.subject %>
+</h3>
+
+<%= form_tag topics_path, method: 'post', remote: true, class: 'survey_form' do %>
+
+	<%= hidden_field_tag(:parent_id, @topic.id) %>
+	
+	<p>Email Address: (required)</p>
+		
+		<div class="error_message">
+			<%= @error %>
+		</div>
+		
+		<div class="control-group">
+
+				<%= email_field :user, :email, :placeholder => 'your@email.address' %>
+
+		</div><br>
+
+
+	<p>Survey Questions:</p>
+
+		<% @topic.questions.each do |question| %>
+
+			<div class="control-group">
+				<%= question.question %>
+			</div>
+			
+			<div class="control-group">
+				
+					<%= text_field :question, question.id %>
+
+			</div><br>
+		
+		<% end %>
+
+	<div class="control-group">
+		<%= submit_tag "Save Survey", class: 'btn btn-large btn-info' %>
+	</div>
+
+<% end %>
+
+
+<div class="modal fade alert alert-info" id="survey_modal">
+	<button type="button" class="close fui-cross" data-dismiss="modal" aria-hidden="true"></button>
+	<h5>Thank you for participating in our survey.</h5>
+		Your response has been saved.  Feel free to update your answers and save again.
+</div>
