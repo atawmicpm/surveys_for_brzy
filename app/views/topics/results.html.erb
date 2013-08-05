@@ -8,24 +8,23 @@
 	<h6 class="email_header"><%= user.email %></h6>
 	<table class="table table-striped">
 
-	<tbody>
-		<tr>
-			<th>Question</th>
-			<th style="width: 50%;">Answer</th>
-		</tr>
-
-	<% user.answers.each do |answer| %>
-
-		<% if answer.survey.topic_id == @topic.id %>
+		<tbody>
 			<tr>
-				<td><%= answer.question.question %></td>
-				<td><%= answer.answer %></td>
+				<th>Question</th>
+				<th style="width: 50%;">Answer</th>
 			</tr>
 
-		<% end %>
+			<% user.answers.each do |answer| %>
 
-	<% end %>
-	
+				<% if answer.survey.topic_id == @topic.id %>
+					<tr>
+						<td><%= answer.question.question %></td>
+						<td><%= answer.answer %></td>
+					</tr>
+				<% end %>
+
+			<% end %>
+
 		</tbody>
 	</table>
 
